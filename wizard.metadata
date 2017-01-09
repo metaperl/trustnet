@@ -1,0 +1,183 @@
+(dp0
+S'tables'
+p1
+(lp2
+S'auth_user'
+p3
+aS'user_swaps'
+p4
+aS'business'
+p5
+aS'user_business'
+p6
+aS'business_labels'
+p7
+asS'name'
+p8
+S'refbank'
+p9
+sS'table_user_swaps'
+p10
+(lp11
+S'trustee_id auth_user'
+p12
+aS'truster_id auth_user'
+p13
+aS'trustee_user_business_id user_business'
+p14
+aS'truster_user_business_id user_business'
+p15
+aS'trustee_ack'
+p16
+aS'truster_ack'
+p17
+asS'table_business_labels'
+p18
+(lp19
+S'name'
+p20
+asS'page_business_labels_manage'
+p21
+S'## Manage business_labels\r\n\r\n{{=form}}'
+p22
+sS'table_business'
+p23
+(lp24
+S'name'
+p25
+asS'page_user_swaps_manage'
+p26
+S'## Manage user_swaps\r\n\r\n{{=form}}'
+p27
+sS'page_index'
+p28
+S'# Welcome to my new app'
+p29
+sS'table_user_business'
+p30
+(lp31
+S'user_id auth_user'
+p32
+aS'name'
+p33
+aS'link'
+p34
+aS'importance integer'
+p35
+asS'params'
+p36
+(lp37
+(S'title'
+p38
+S'Referral Bank'
+p39
+tp40
+a(S'subtitle'
+p41
+S'powered by web2py'
+p42
+tp43
+a(S'author'
+p44
+S'Terrence Brannon'
+p45
+tp46
+a(S'author_email'
+p47
+S'schemelab@gmail.com'
+p48
+tp49
+a(S'keywords'
+p50
+S'home business'
+p51
+tp52
+a(S'description'
+p53
+S'home business referral network'
+p54
+tp55
+a(S'layout_theme'
+p56
+S'Default'
+p57
+tp58
+a(S'database_uri'
+p59
+S'postgresql://metaperl:m0ney123@localhost/refbank'
+p60
+tp61
+a(S'security_key'
+p62
+S'59b7a88a-8157-445a-9efd-4ce05fdb1c95'
+p63
+tp64
+a(S'email_server'
+p65
+S'localhost'
+p66
+tp67
+a(S'email_sender'
+p68
+S'schemelab@gmail.com'
+p69
+tp70
+a(S'email_login'
+p71
+S''
+p72
+tp73
+a(S'login_method'
+p74
+S'local'
+p75
+tp76
+a(S'login_config'
+p77
+g72
+tp78
+a(S'plugins'
+p79
+(lp80
+tp81
+asS'page_user_business_manage'
+p82
+S'## Manage user_business\r\n\r\n{{=form}}'
+p83
+sS'page_business_manage'
+p84
+S'## Manage business\r\n\r\n{{=form}}'
+p85
+sS'page_error'
+p86
+S'# Error: the document does not exist'
+p87
+sS'table_auth_user'
+p88
+(lp89
+S'username'
+p90
+aS'first_name'
+p91
+aS'last_name'
+p92
+aS'email'
+p93
+aS'password'
+p94
+asS'pages'
+p95
+(lp96
+S'index'
+p97
+aS'error'
+p98
+aS'user_swaps_manage'
+p99
+aS'business_manage'
+p100
+aS'user_business_manage'
+p101
+aS'business_labels_manage'
+p102
+as.

@@ -1,0 +1,163 @@
+timestamp: 2017-01-08T18:33:35.665928
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2017-01-08T18:33:35.670771
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2017-01-08T18:33:35.679464
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2017-01-08T18:33:35.689778
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2017-01-08T18:33:35.695289
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2017-01-08T18:33:35.703086
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2017-01-08T18:33:35.711376
+CREATE TABLE t_business_labels(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_name CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2017-01-08T18:33:35.717206
+CREATE TABLE t_business_labels_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_name CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    current_record INTEGER REFERENCES t_business_labels (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2017-01-08T18:33:35.723843
+CREATE TABLE t_business(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_name CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2017-01-08T18:33:35.730175
+CREATE TABLE t_business_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_name CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    current_record INTEGER REFERENCES t_business (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2017-01-08T18:33:35.738507
+CREATE TABLE t_user_business(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    f_name CHAR(512),
+    f_link CHAR(512),
+    f_importance INTEGER,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2017-01-08T18:33:35.745367
+CREATE TABLE t_user_business_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    f_name CHAR(512),
+    f_link CHAR(512),
+    f_importance INTEGER,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    current_record INTEGER REFERENCES t_user_business (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2017-01-08T18:33:35.753838
+CREATE TABLE t_user_swaps(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_trustee_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    f_truster_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    f_trustee_user_business_id INTEGER REFERENCES t_user_business (id) ON DELETE CASCADE  ,
+    f_truster_user_business_id INTEGER REFERENCES t_user_business (id) ON DELETE CASCADE  ,
+    f_trustee_ack CHAR(512),
+    f_truster_ack CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2017-01-08T18:33:35.761925
+CREATE TABLE t_user_swaps_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_trustee_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    f_truster_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    f_trustee_user_business_id INTEGER REFERENCES t_user_business (id) ON DELETE CASCADE  ,
+    f_truster_user_business_id INTEGER REFERENCES t_user_business (id) ON DELETE CASCADE  ,
+    f_trustee_ack CHAR(512),
+    f_truster_ack CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    current_record INTEGER REFERENCES t_user_swaps (id) ON DELETE CASCADE  
+);
+success!
